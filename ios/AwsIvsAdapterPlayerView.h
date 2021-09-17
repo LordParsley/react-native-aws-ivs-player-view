@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) RCTBubblingEventBlock onDidChangeState;
 @property (nonatomic, copy) RCTBubblingEventBlock onDidChangeDuration;
 @property (nonatomic, copy) RCTBubblingEventBlock onDidOutputCue;
+@property (nonatomic, copy) RCTBubblingEventBlock onDidChangePosition;
 @property (nonatomic, copy) RCTBubblingEventBlock onDidSeekToTime;
 @property (nonatomic, copy) RCTBubblingEventBlock onBitrateRecalculated;
 @property (nonatomic, strong) NSURL *url;
@@ -30,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) IVSPlayer *player;
 
 - (void)handleBitrateRecalculated:(double)bitrate;
+- (void)handlePositionUpdated:(CMTime)time;
 
 @end
 

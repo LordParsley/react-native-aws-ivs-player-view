@@ -35,6 +35,7 @@ RCT_EXPORT_VIEW_PROPERTY(onPlayerWillRebuffer, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onDidChangeState, RCTBubblingEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onDidChangeDuration, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onDidOutputCue, RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(onDidChangePosition, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onDidSeekToTime, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onBitrateRecalculated, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(maxBufferTimeSeconds, NSInteger)

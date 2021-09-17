@@ -73,6 +73,14 @@ static const NSInteger kDefaultMaxBufferTimeInSeconds = 10;
                                  withObject:@(rebufferToLive)];
 }
 
+// MARK: - Playback position handler
+
+- (void)handlePositionUpdated:(CMTime)time {
+    if (self.onDidChangePosition) {
+        self.onDidChangePosition(@{@"position": @(CMTimeGetSeconds(time))});
+    }
+}
+
 // MARK: - IVSPlayerDelegate
 
 - (void)player:(IVSPlayer *)player didSeekToTime:(CMTime)time {

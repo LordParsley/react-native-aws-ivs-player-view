@@ -20,6 +20,7 @@ interface IAwsIvsPlayerView {
   onPlayerWillRebuffer?(any): any;
   onDidChangeState?(any): any;
   onDidChangeDuration?(any): any;
+  onDidChangePosition?(any): any;
   onDidOutputCue?(any): any;
   onDidSeekToTime?(any): any;
   onBitrateRecalculated?(any): any;
@@ -52,6 +53,13 @@ class PlayerView extends Component<IAwsIvsPlayerView> {
       return;
     }
     this.props.onDidChangeDuration(event.nativeEvent);
+  };
+
+  _onDidChangePosition = event => {
+    if (!this.props.onDidChangePosition) {
+      return;
+    }
+    this.props.onDidChangePosition(event.nativeEvent);
   };
 
   _onDidOutputCue = event => {
@@ -155,6 +163,7 @@ class PlayerView extends Component<IAwsIvsPlayerView> {
         onPlayerWillRebuffer={this._onPlayerWillRebuffer.bind(this)}
         onDidChangeState={this._onDidChangeState.bind(this)}
         onDidChangeDuration={this._onDidChangeDuration.bind(this)}
+        onDidChangePosition={this._onDidChangePosition.bind(this)}
         onDidOutputCue={this._onDidOutputCue.bind(this)}
         onDidSeekToTime={this._onDidSeekToTime.bind(this)}
         onBitrateRecalculated={this._onBitrateRecalculated.bind(this)}
@@ -167,6 +176,7 @@ interface INativeIvsPlayer {
   onPlayerWillRebuffer?(any): any;
   onDidChangeState?(any): any;
   onDidChangeDuration?(any): any;
+  onDidChangePosition?(any): any;
   onDidOutputCue?(any): any;
   onDidSeekToTime?(any): any;
   onBitrateRecalculated?(any): any;

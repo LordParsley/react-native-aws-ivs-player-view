@@ -45,6 +45,7 @@
         self.bitrate = calculatedBitrate;
 
         [self.playerViewAdapter handleBitrateRecalculated:self.bitrate];
+        [self.playerViewAdapter handlePositionUpdated:currentTime];
 
         NSLog(@"Bitrate recalculated %@", @(self.bitrate));
     }
