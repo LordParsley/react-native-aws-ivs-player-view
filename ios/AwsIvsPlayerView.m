@@ -131,6 +131,38 @@ RCT_EXPORT_METHOD(stop:(NSNumber * __nonnull)reactTag) {
     }];
 }
 
+RCT_EXPORT_METHOD(skipForward:(NSNumber * __nonnull)reactTag seconds:(NSNumber * __nonnull)seconds) {
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, AwsIvsAdapterPlayerView *> *viewRegistry) {
+        AwsIvsAdapterPlayerView *view = viewRegistry[reactTag];
+        if (![view isKindOfClass:[AwsIvsAdapterPlayerView class]]) {
+            RCTLogError(@"Invalid view returned from registry, expecting AwsIvsAdapterPlayerView, got: %@", view);
+        }
+
+        CMTime playbackPosition = view.player.position;
+        CMTime skipForwardTime = CMTimeMake(seconds.intValue, 1);
+        CMTime seekToPosition = CMTimeAdd(playbackPosition, skipForwardTime);
+        CMTime position = CMTimeMinimum(seekToPosition, view.player.duration);
+        NSLog(@"skipForward: by %d seconds to %.0f", seconds.intValue, CMTimeGetSeconds(position));
+        [view.player seekTo:position];
+    }];
+}
+
+RCT_EXPORT_METHOD(skipBackward:(NSNumber * __nonnull)reactTag seconds:(NSNumber * __nonnull)seconds) {
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, AwsIvsAdapterPlayerView *> *viewRegistry) {
+        AwsIvsAdapterPlayerView *view = viewRegistry[reactTag];
+        if (![view isKindOfClass:[AwsIvsAdapterPlayerView class]]) {
+            RCTLogError(@"Invalid view returned from registry, expecting AwsIvsAdapterPlayerView, got: %@", view);
+        }
+
+        CMTime playbackPosition = view.player.position;
+        CMTime skipBackwardTime = CMTimeMake(seconds.intValue, 1);
+        CMTime seekToPosition = CMTimeSubtract(playbackPosition, skipBackwardTime);
+        CMTime position = CMTimeMaximum(kCMTimeZero, seekToPosition);
+        NSLog(@"skipBackward: by %d seconds to %.0f", seconds.intValue, CMTimeGetSeconds(position));
+        [view.player seekTo:position];
+    }];
+}
+
 + (BOOL)requiresMainQueueSetup {
     return YES;
 }
