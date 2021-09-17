@@ -156,3 +156,11 @@ const NativeIvsPlayerView: HostComponent<
 > = requireNativeComponent('AwsIvsPlayerView');
 
 export default PlayerView;
+
+export const IVSPlayerState = {
+  Idle: 0,
+  Ready: 1,
+  Buffering: 2,
+  Playing: 3,
+  Ended: 4,
+};
