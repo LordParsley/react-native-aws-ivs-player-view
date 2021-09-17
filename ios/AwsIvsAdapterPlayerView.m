@@ -121,13 +121,14 @@ static const NSInteger kDefaultMaxBufferTimeInSeconds = 10;
         case IVSPlayerStateIdle:
             NSLog(@"State: Idle");
 
-            if (!self.isPaused) {
-                NSLog(@"State: not paused -- reloading");
-
-                [self reload];
-            } else {
-                NSLog(@"State: we are paused -- not reloading %@", @(self.isPaused));
-            }
+            // FIXME: This reload mechanism prevents play from picking up where we paused.
+//            if (!self.isPaused) {
+//                NSLog(@"State: not paused -- reloading");
+//
+//                [self reload];
+//            } else {
+//                NSLog(@"State: we are paused -- not reloading %@", @(self.isPaused));
+//            }
             break;
         case IVSPlayerStateBuffering:
             NSLog(@"State: Buffering");
@@ -141,13 +142,16 @@ static const NSInteger kDefaultMaxBufferTimeInSeconds = 10;
             break;
         case IVSPlayerStatePlaying:
             NSLog(@"State: Playing");
+            
+            // FIXME: It's very easy to accumulate a 10-second buffer, so this effectively pauses video immediately after resuming.
             // If we have accumulated too much of a buffer,
             // then we need to move ourselves back into the
             // IVSPlayerStateIdle state, which will then trigger
             // a reload
-            if (@(CMTimeGetSeconds(player.buffered)).integerValue >= self.maxBufferTimeSeconds) {
-                [player pause];
-            }
+//            if (@(CMTimeGetSeconds(player.buffered)).integerValue >= self.maxBufferTimeSeconds) {
+//                NSLog(@"Over-buffered; pausing.");
+//                [player pause];
+//            }
             break;
     }
 }
