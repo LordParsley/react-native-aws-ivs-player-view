@@ -33,42 +33,42 @@ class PlayerView extends Component<IAwsIvsPlayerView> {
     super(props);
   }
 
-  _onPlayerWillRebuffer = (event) => {
+  _onPlayerWillRebuffer = event => {
     if (!this.props.onPlayerWillRebuffer) {
       return;
     }
     this.props.onPlayerWillRebuffer(event.nativeEvent);
   };
 
-  _onDidChangeState = (event) => {
+  _onDidChangeState = event => {
     if (!this.props.onDidChangeState) {
       return;
     }
     this.props.onDidChangeState(event.nativeEvent);
   };
 
-  _onDidChangeDuration = (event) => {
+  _onDidChangeDuration = event => {
     if (!this.props.onDidChangeDuration) {
       return;
     }
     this.props.onDidChangeDuration(event.nativeEvent);
   };
 
-  _onDidOutputCue = (event) => {
+  _onDidOutputCue = event => {
     if (!this.props.onDidOutputCue) {
       return;
     }
     this.props.onDidOutputCue(event.nativeEvent);
   };
 
-  _onDidSeekToTime = (event) => {
+  _onDidSeekToTime = event => {
     if (!this.props.onDidSeekToTime) {
       return;
     }
     this.props.onDidSeekToTime(event.nativeEvent);
   };
 
-  _onBitrateRecalculated = (event) => {
+  _onBitrateRecalculated = event => {
     if (!this.props.onBitrateRecalculated) {
       return;
     }
@@ -151,8 +151,8 @@ interface INativeIvsPlayer {
   rebufferToLive: boolean;
 }
 
-const NativeIvsPlayerView: HostComponent<INativeIvsPlayer> = requireNativeComponent(
-  'AwsIvsPlayerView'
-);
+const NativeIvsPlayerView: HostComponent<
+  INativeIvsPlayer
+> = requireNativeComponent('AwsIvsPlayerView');
 
 export default PlayerView;
