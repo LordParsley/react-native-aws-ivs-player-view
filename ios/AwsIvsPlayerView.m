@@ -128,7 +128,8 @@ RCT_EXPORT_METHOD(stop:(NSNumber * __nonnull)reactTag) {
             RCTLogError(@"Invalid view returned from registry, expecting AwsIvsAdapterPlayerView, got: %@", view);
         }
         view.isPaused = YES;
-        [view.player pause];
+        [view cleanup];
+        view.playerView.player = nil;
     }];
 }
 

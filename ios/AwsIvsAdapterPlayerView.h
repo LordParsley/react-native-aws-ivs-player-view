@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) IVSPlayer *player;
 
+- (void)cleanup;
 - (void)handleBitrateRecalculated:(double)bitrate;
 - (void)handlePositionUpdated:(CMTime)time;
 
