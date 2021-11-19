@@ -76,8 +76,10 @@ static const NSInteger kDefaultMaxBufferTimeInSeconds = 10;
 // MARK: - Playback position handler
 
 - (void)handlePositionUpdated:(CMTime)time {
-    if (self.onDidChangePosition) {
-        self.onDidChangePosition(@{@"position": @(CMTimeGetSeconds(time))});
+    if (!isnan(CMTimeGetSeconds(time))) {
+        if (self.onDidChangePosition) {
+            self.onDidChangePosition(@{@"position": @(CMTimeGetSeconds(time))});
+        }
     }
 }
 

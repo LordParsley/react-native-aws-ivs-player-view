@@ -34,13 +34,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/perrystreetsoftware/react-native-aws-ivs-player-view",
+  "repository": "https://github.com/LordParsley/react-native-aws-ivs-player-view",
   "author": "Eric Silverberg <eric@perrys*****.com> (https://github.com/perrystreetsoftware)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/perrystreetsoftware/react-native-aws-ivs-player-view/issues"
+    "url": "https://github.com/LordParsley/react-native-aws-ivs-player-view/issues"
   },
-  "homepage": "https://github.com/perrystreetsoftware/react-native-aws-ivs-player-view#readme",
+  "homepage": "https://github.com/LordParsley/react-native-aws-ivs-player-view#readme",
   "devDependencies": {
     "@commitlint/config-conventional": "^8.3.4",
     "@react-native-community/bob": "^0.16.2",
