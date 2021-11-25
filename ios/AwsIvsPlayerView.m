@@ -133,6 +133,20 @@ RCT_EXPORT_METHOD(stop:(NSNumber * __nonnull)reactTag) {
     }];
 }
 
+RCT_EXPORT_METHOD(seekTo:(NSNumber * __nonnull)reactTag seconds:(NSNumber * __nonnull)seconds) {
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, AwsIvsAdapterPlayerView *> *viewRegistry) {
+        AwsIvsAdapterPlayerView *view = viewRegistry[reactTag];
+        if (![view isKindOfClass:[AwsIvsAdapterPlayerView class]]) {
+            RCTLogError(@"Invalid view returned from registry, expecting AwsIvsAdapterPlayerView, got: %@", view);
+        }
+
+        CMTime seekToPosition = CMTimeMake(seconds.intValue, 1);
+        CMTime position = CMTimeMinimum(seekToPosition, view.player.duration);
+        NSLog(@"seekTo: %d seconds to %.0f", seconds.intValue, CMTimeGetSeconds(position));
+        [view.player seekTo:position];
+    }];
+}
+
 RCT_EXPORT_METHOD(skipForward:(NSNumber * __nonnull)reactTag seconds:(NSNumber * __nonnull)seconds) {
     [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, AwsIvsAdapterPlayerView *> *viewRegistry) {
         AwsIvsAdapterPlayerView *view = viewRegistry[reactTag];
